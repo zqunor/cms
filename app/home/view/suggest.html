@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>搜索</title>
+  <script src="<{PUBLIC_HOME}>js/common.js"></script>
+  <style>
+    *{ margin:0; padding:0; }
+
+    table{ margin:50px auto; }
+
+    input{ width:330px; height:30px; font-size:18px; }
+
+    button{ width:100px; height:35px; }
+
+    li{ list-style:none }
+
+    .choose{ background:silver }
+  </style>
+</head>
+<body>
+<table>
+  <tr>
+    <td>
+      <input type="text">
+    </td>
+    <td>
+      <button>百度一下</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+  var input = document.body.getElementsByTagName('input')[0];
+
+  var obtn = document.body.getElementsByTagName('button')[0];
+
+  input.onkeyup = function () {
+    var name = this.value;
+    if (name) {
+
+
+      $$.request({
+          method: 'post',
+          url: "<{framework\core\Factory::U('home/index/getSuggest')}>",
+          data: 'name=' + name,
+          callback: function (res) {
+            eval("var obj=" + res);
+
+            if (obj.status) {
+              var oul = $('name');
+
+              if (!oul) {
+                oul = document.createElement('ul');
+                oul.id = 'name';
+                oul.style.position = 'absolute';
+              }
+              //每次先将之前查询的结果清空
+              oul.innerHTML = '';
+              for (var i = 0; i < obj.msg.length; i++) {
+                var oli = document.createElement('li');
+                oli.innerHTML = obj.msg[i].goods_name;
+                oli.onmouseover = function () {
+                  addClass(this, 'choose');
+                };
+                oli.onmouseout = function () {
+                  removeClass(this, 'choose');
+                };
+                oli.onclick = function () {
+                  input.value = this.innerHTML;
+
+                };
+
+                oul.appendChild(oli);
+              }
+              input.parentNode.appendChild(oul);
+            }
+          }
+        }
+      );
+    }
+  }
+
+</script>
+</body>
+</html>

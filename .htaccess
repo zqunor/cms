@@ -1,0 +1,12 @@
+﻿#如果存在rewrite_module 模块则执行里面的代码
+<IfModule rewrite_module>
+	#开启重写机制
+	RewriteEngine	On
+	#告诉apache这里不是文件
+	RewriteCond %{REQUEST_FILENAME} !-f
+	#告诉apache这里不是目录
+	RewriteCond %{REQUEST_FILENAME} !-d
+	
+	#重写规则就是匹配 index.php后面的参数，参数前面加上index.php/
+	RewriteRule (.*) index.php/$1
+</IfModule>

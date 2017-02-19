@@ -1,0 +1,226 @@
+<{extends file="common/common.html"}>
+
+<{block name="content"}>
+<div class="aw-container-wrap">
+  <div class="container category">
+    <div class="row">
+      <div class="col-sm-12">
+        <{foreach $cat_list as $row}>
+        <dl>
+          <dt>
+            <img alt="" src="<{THUMB_PATH}><{$row['cat_logo']}>">
+          </dt>
+          <dd>
+            <p class="title">
+              <a href=""><{$row['cat_name']}></a>
+            </p>
+            <span>默认分类描述</span>
+          </dd>
+        </dl>
+        <{/foreach}>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="aw-content-wrap clearfix">
+        <div class="col-sm-12 col-md-9 aw-main-content">
+          <!-- end 新消息通知 -->
+          <!-- tab切换 -->
+          <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+            <li>
+              <a href="">等待回复</a>
+            </li>
+            <li>
+              <a id="sort_control_hot" href="">热门</a>
+            </li>
+            <li>
+              <a href="">推荐</a>
+            </li>
+            <li class="active">
+              <a href="">最新</a>
+            </li>
+
+            <h2 class="hidden-xs">
+              <i class="icon icon-list"></i>
+              发现
+            </h2>
+          </ul>
+          <!-- end tab切换 -->
+
+
+          <div class="aw-mod aw-explore-list">
+            <!--问题列表-->
+            <div class="mod-body">
+              <div class="aw-common-list" id="question_list">
+                <!--  <{foreach $questions as $row}>
+                --<div data-topic-id="2," class="aw-item active">
+                    <a rel="nofollow" href="people.html" data-id="1" class="aw-user-name hidden-xs">
+                      <img alt="" src="<{PUBLIC_HOME}>common/avatar-max-img.png"></a>
+
+                    <div class="aw-question-content">
+                      <h4>
+                        <a href="<{STATIC_PATH}><{$row['static_url']}>">
+                          <{$row['question_title']}>
+                        </a>
+                      </h4>
+                      <a class="pull-right text-color-999" href="">回复</a>
+
+                      <p>
+                        <a href="category.html" class="aw-question-tags">
+                          <{$row['cat_name']}>
+                        </a>•
+                        <a class="aw-user-name" href="people.html"><{$row['username']}></a>
+                        <span class="text-color-999">发起了问题 •
+                        <{$row['focus_count']|default:0}> 人关注 •
+                        <{$row['reply_count']|default:0}>个回复 •
+                        <{$row['view_count']|default:0}>次浏览 •
+                        <{$row['pub_time']|date_format:'%Y-%m-%d %H:%M:%S'}>
+                        </span>
+                        <span class="text-color-999 related-topic hide">• 来自相关话题</span>
+                      </p>
+                    </div>
+                  </div>
+                  <{/foreach}>-->
+              </div>
+            </div>
+            <!--end问题列表-->
+
+            <!--分页导航-->
+            <div class="mod-footer">
+              <div class="page-control" id="page_bar">
+                <{$page_html}>
+              </div>
+            </div>
+            <!--end分页导航-->
+          </div>
+
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
+          <div class="aw-mod aw-text-align-justify">
+            <div class="mod-head">
+              <a class="pull-right" href="topic_index.html">更多 &gt;</a>
+
+              <h3>热门话题</h3>
+            </div>
+            <div class="mod-body">
+              <{foreach $hot_topics as $row}>
+              <dl>
+                <dt class="pull-left aw-border-radius-5">
+                  <a href="topic.html">
+                    <img src="<{PUBLIC_HOME}>common/topic-mid-img.png" alt=""></a>
+                </dt>
+                <dd class="pull-left">
+                  <p class="clearfix">
+										<span class="topic-tag">
+											<a data-id="2" class="text" href="topic.html">
+                        <{$row['topic_title']}>
+                      </a>
+										</span>
+                  </p>
+
+                  <p>
+                    <b><{$row['q_num']}></b>个问题,
+                    <b><{$row['user_num']}></b>人关注
+                  </p>
+                </dd>
+              </dl>
+              <{/foreach}>
+            </div>
+          </div>
+          <div class="aw-mod aw-text-align-justify">
+            <div class="mod-head">
+              <a class="pull-right" href="?/people/">更多 &gt;</a>
+
+              <h3>热门用户</h3>
+            </div>
+            <div class="mod-body">
+              <{foreach $hot_user as $row}>
+              <dl>
+                <dt class="pull-left aw-border-radius-5">
+                  <a href="people.html">
+                    <img src="<{THUMB_PATH}><{$row['user_thumb']}>" alt=""></a>
+                </dt>
+                <dd class="pull-left">
+                  <a class="aw-user-name" data-id="2" href="people.html">
+                    <{$row['username']}>
+                  </a>
+
+                  <p class="signature"></p>
+
+                  <p>
+                    <b><{$row['q_num']}></b>
+                    个问题
+                  </p>
+                </dd>
+              </dl>
+              <{/foreach}>
+            </div>
+          </div>
+        </div>
+        <!-- end 侧边栏 -->
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  goPage(1);
+  function goPage(page){
+    $$.request({
+      method: 'post',
+      url: "<{framework\core\Factory::U('home/index/getQuestions')}>",
+      data:'page='+page,
+      callback:function(res){
+        eval('var obj ='+res);
+        //获取问题列表的div标签
+        var oQuestion = $('question_list');
+        var page_bar = $('page_bar');
+
+        var questions = obj.list;
+        oQuestion.innerHTML='';
+        for(var i = 0; i < questions.length ; i++){
+          var time = questions[i]['pub_time']; //1483970035
+          var today = new Date().getTime();
+
+          //当前时间和发布时间的间隔天数
+          var days =Math.floor((today - time*1000)/(1000*3600*24)) ;
+          var hours = (today - time)/(1000*3600);
+          var min = (today - time)/(1000*3600)*60;
+          var des = '';
+          //如果时间间隔大于3天，转化为年月日格式
+          if (days > 3){
+
+            var date = new Date(time*1000);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            des = year + '-' + month + '-' + day;
+
+          }else if (days >= 1 && days <= 3){
+            des = days + '天前';
+          }else if (hours > 1){
+            des = hours + '小时前';
+          }else if (min > 1){
+            des = min + '分钟前';
+          }else{
+            des = '刚刚';
+          }
+          //如果时间大于1天，显示几天前
+
+          var question = '<div data-topic-id="2," class="aw-item active"><a rel="nofollow" href="" data-id="1" class="aw-user-name hidden-xs"><img alt="" src="<{PUBLIC_HOME}>common/avatar-img.png"></a><div class="aw-question-content"><h4><a href="<{STATIC_PATH}>'+questions[i]['static_url']+'">'+questions[i]['question_title']+'</a></h4><a class="pull-right text-color-999" href="">回复</a><p><a href="" class="aw-question-tags">'+questions[i]['cat_name']+'</a>•<a class="aw-user-name" href="">'+questions[i]['username']+'</a> <span class="text-color-999">发起了问题 •'+(questions[i]['focus_count']?questions[i]['focus_count']:0)+'人关注 •'+(questions[i]['replay_count']?questions[i]['replay_count']:0)+'个回复 •'+(questions[i]['view_count']?questions[i]['view_count']:0)+'次浏览 • ' + des + '</span><span class="text-color-999 related-topic hide">• 来自相关话题</span></p></div></div>';
+
+          oQuestion.innerHTML += question;
+        }
+
+        page_bar.innerHTML = obj.page_html;
+
+      }
+    });
+  }
+
+
+</script>
+<{/block}>

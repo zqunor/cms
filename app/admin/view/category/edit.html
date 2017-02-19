@@ -1,0 +1,105 @@
+<{extends file='common.html'}>
+<{block name="content"}>
+
+<div class="aw-content-wrap">
+  <form method="post" id="category_form" action="<{framework\core\Factory::U('admin/category/update')}>"
+        enctype="multipart/form-data">
+    <!-- 将这里注释掉 <input type="hidden" value="1" name="category_id"> -->
+    <div class="mod">
+      <div class="mod-head">
+        <h3>
+          <span class="pull-left">分类编辑</span>
+        </h3>
+      </div>
+      <div class="tab-content mod-content">
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td>
+              <div class="form-group">
+                <span class="col-sm-4 col-xs-3 control-label">分类标题:</span>
+
+                <div class="col-sm-5 col-xs-8">
+                  <input type="text" value="<{$cat_info['cat_name']}>" name="cat_name" class="form-control">
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="form-group">
+                <span class="col-sm-4 col-xs-3 control-label">父级分类:</span>
+
+                <div class="col-sm-5 col-xs-8">
+                  <select class="form-control" name="parent_id">
+                    <option value="0">无</option>
+                    <{foreach $cat_list as $row}>
+
+                    <{if $row['cat_id']==$cat_info['parent_id']}>
+                    <option value="<{$row['cat_id']}>" selected>
+                      <{else}>
+                    <option value="<{$row['cat_id']}>">
+                      <{/if}>
+                      <{$row['cat_name']|indent:$row['level']:'&nbsp;&nbsp;&nbsp;'}>
+
+                    </option>
+                    <{/foreach}>
+                  </select>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--<form action="<{framework\core\Factory::U('admin/category/addLogo')}>" enctype="multipart/form-data"
+                    method="post">-->
+              <!-- 上传分类图标 -->
+              <div class="side-bar">
+                <dl>
+                  <dt class="pull-left">
+                  </dt>
+                  <dd class="pull-left">
+                    <h5>头像设置</h5>
+
+                    <{if $cat_info['cat_logo']}>
+
+                    <img class="aw-border-radius-5" src="<{THUMB_PATH}><{$cat_info['cat_logo']}>" alt=""
+                         id="avatar_src"/>
+                    <span style="color:red">分类图标已上传,继续上传将覆盖</span>
+                    <{/if}>
+                    <input type="hidden" name="cat_id" value="{$cat_info['cat_id']}">
+                    <input type="file" name="cat_logo">
+
+                    <p>支持 jpg、gif、png 等格式的图片</p>
+                    <!--<a class="btn btn-mini btn-success" href="<{framework\core\Factory::U('home/user/addThumb')}>" id="avatar_uploader" href="javascript:;" >上传头像</a> -->
+                    <input type="submit" class="btn btn-mini btn-success" id="avatar_uploader"
+                           value="上传图标">
+                            <span
+                              id="avatar_uploading_status" class="collapse"><i class="aw-loading"></i> 文件上传中...</span>
+                  </dd>
+                </dl>
+              </div>
+              <!-- end 上传分类图标 -->
+              <!--</form>-->
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td>
+              <!--<input type="hidden" name="cat_id" value="<{$cat_info['cat_id']}>">-->
+
+              <input type="hidden" name="old_cat_logo" value="<{$cat_info['cat_logo']}>">
+
+              <input type="submit" class="btn btn-primary center-block" value="保存设置">
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+
+<{/block}>

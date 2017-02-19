@@ -1,0 +1,73 @@
+<{extends file='common.html'}>
+<{block name="content"}>
+
+<div class="aw-content-wrap">
+  <form method="post" id="category_form"
+        action="?m=admin&c=category&a=addHandle" enctype="multipart/form-data">
+    <input type="hidden" value="1" name="category_id">
+
+    <div class="mod">
+      <div class="mod-head">
+        <h3>
+          <span class="pull-left">添加分类</span>
+        </h3>
+      </div>
+      <div class="tab-content mod-content">
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td>
+              <div class="form-group">
+                <span class="col-sm-4 col-xs-3 control-label">分类标题:</span>
+
+                <div class="col-sm-5 col-xs-8">
+                  <input type="text" placeholder="默认分类" name="title" class="form-control">
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="form-group">
+                <span class="col-sm-4 col-xs-3 control-label">父级分类:</span>
+
+                <div class="col-sm-5 col-xs-8">
+                  <select class="form-control" name="parent_id">
+                    <option value="0">无</option>
+                    <{foreach $cat_tree as $row}>
+                    <option value="{$row['cat_id']}">
+                      <{$row['cat_name']|indent:$row['level']:'&nbsp;&nbsp;&nbsp;'}>
+                    </option>
+                    <{/foreach}>
+                  </select>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <span class="col-sm-4 col-xs-3 control-label">分类图标:</span>
+
+                <div class="col-sm-5 col-xs-8">
+                  <input type="file" name="cat_logo"/>
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td>
+              <input type="submit" class="btn btn-primary center-block" value="保存设置">
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+
+<{/block}>

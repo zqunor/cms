@@ -1,0 +1,75 @@
+<{extends file='common.html'}>
+<{block name="content"}>
+
+<div class="aw-content-wrap">
+  <div class="mod">
+    <div class="mod-head">
+      <h3>
+        <span class="pull-left">分类管理</span>
+      </h3>
+    </div>
+
+    <div class="tab-content mod-body">
+      <div class="alert alert-success hide error_message"></div>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>分类标题</th>
+            <th>排序</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <form onsubmit="return false" method="post" action="#" id="category_form"></form>
+          <{foreach $cat_list as $row}>
+          <tr>
+            <td>
+              <a href="#"><{$row['cat_name']}></a>
+            </td>
+            <td>
+              <div class="col-sm-6 clo-xs-12 col-lg-offset-3">
+                0
+              </div>
+            </td>
+            <td>
+              <a title="" class="icon icon-edit md-tip" data-toggle="tooltip"
+                 href="<{framework\core\Factory::U('admin/category/edit/id/')}><{$row['cat_id']}>"
+                 data-original-title="编辑"></a>
+
+              <a title="" class="icon icon-trash md-tip"
+                 data-toggle="tooltip"
+                 href="<{framework\core\Factory::U('admin/category/delete/id/')}><{$row['cat_id']}>"
+                 data-original-title="删除"></a>
+
+              <a title="" class="icon icon-transfer md-tip move" data-toggle="tooltip"
+                 data-url="admin/category/move_contents/" data-name="默认分类" data-id="1" data-original-title="批量移动"></a>
+            </td>
+          </tr>
+          <{/foreach}>
+
+          </tbody>
+          <tfoot class="mod-foot-center">
+          <tr>
+            <td colspan="3">
+              <form onsubmit="return false" method="post" action="http://localhost/wecenter/?/admin/ajax/save_category/"
+                    id="add_category_form">
+
+                <div class="col-sm-12 col-xs-12">
+                  <a href="<{framework\core\Factory::U('admin/category/add')}>" class="btn-primary btn">添加分类</a>
+                </div>
+              </form>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--<div class="hide" id="target-category">-->
+    <!--<option value="1">默认分类</option>-->
+  <!--</div>-->
+</div>
+
+<{/block}>

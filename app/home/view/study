@@ -1,0 +1,19 @@
+> var zzz = function () {
+...      var x = [] ; var n = 0;
+...      db.users.find().forEach(function (u) {
+...         n++;
+...         if (n<100)
+...             x.push(
+...                 {
+...                     zzz1: u.fullname,
+...                     xxx1: [
+...                         u._id,
+...                         u.email
+...                     ]
+...                 }
+...             );
+...     })
+...
+...     return x;
+... }
+> var z = zzz();

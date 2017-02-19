@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="webkit" name="renderer">
+  <meta content="IE=edge,Chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="blank" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+
+  <title>分类管理-有问必答</title>
+  <!--<link type="image/x-icon" rel="shortcut icon" href="{PUBLIC_HOME}css/default/img/favicon.ico">-->
+  <link href="<{PUBLIC_HOME}>css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="<{PUBLIC_HOME}>css/icon.css" rel="stylesheet" type="text/css">
+  <link href="<{PUBLIC_ADMIN}>css/common.css" rel="stylesheet" type="text/css">
+  <script src="<{PUBLIC_HOME}>js/jquery.2.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_HOME}>js/jquery.form.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>js/framework.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>js/global.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>/js/aws_admin.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>/js/aws_admin_template.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>/js/echarts-data.js" type="text/javascript"></script>
+  <script src="<{PUBLIC_ADMIN}>/js/echarts.js" type="text/javascript"></script>
+
+  <!--[if lte IE 8]>
+  <script type="text/javascript" src="<{PUBLIC_HOME}>js/respond.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div class="aw-header">
+  <button class="btn btn-sm mod-head-btn pull-left">
+    <i class="icon icon-bar"></i>
+  </button>
+
+  <div class="mod-header-user">
+    <ul class="pull-right">
+
+      <li class="dropdown username">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="">
+          <img width="30" class="img-circle" src="<{PUBLIC_HOME}>common/avatar-img.png">
+          zhouqun
+          <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu pull-right mod-user">
+          <li>
+            <a target="_blank" href="">
+              <i class="icon icon-user"></i>
+              账户
+            </a>
+          </li>
+
+          <li>
+            <a href="<{framework\core\Factory::U('home/user/logout')}>">
+              <i class="icon icon-logout"></i>
+              退出
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="aw-side" class="aw-side ps-container">
+  <div class="mod">
+    <div class="mod-logo">
+      <img alt="" src="<{PUBLIC_ADMIN}>img/logo.png" class="pull-left">
+      <h1>有问必答</h1>
+    </div>
+
+    <div class="mod-message">
+      <div class="message">
+        <a title="首页" target="_blank" href="<{framework\core\Factory::U('admin/index/index')}>" class="btn btn-sm">
+          <i class="icon icon-home"></i>
+        </a>
+
+        <a title="退出" href="<{framework\core\Factory::U('admin/user/logout')}>" class="btn btn-sm">
+          <i class="icon icon-logout"></i>
+        </a>
+      </div>
+    </div>
+
+    <ul class="mod-bar">
+      <input type="hidden" val="0" id="hide_values">
+      <li>
+        <a class=" icon icon-ul" href="<{framework\core\Factory::U('admin/index/index')}>">
+          <span>摘要信息</span>
+        </a>
+      </li>
+
+      <li>
+        <a data="icon" class=" icon icon-reply active" href="javascript:;">
+          <span>内容管理</span>
+        </a>
+
+        <ul class="hide" style="display: block;">
+          <li>
+            <a class="active" href="<{framework\core\Factory::U('admin/category/index')}>">
+              <span>分类管理</span>
+            </a>
+          </li>
+          <li>
+            <a href="<{framework\core\Factory::U('admin/question/index')}>">
+              <span>问题管理</span>
+            </a>
+          </li>
+          <li>
+            <a href="<{framework\core\Factory::U('admin/topic/index')}>">
+              <span>话题管理</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a data="icon" class=" icon icon-user" href="javascript:;">
+          <span>用户管理</span>
+        </a>
+
+        <ul class="hide">
+          <li>
+            <a href="<{framework\core\Factory::U('admin/user/index')}>">
+              <span>用户列表</span>
+            </a>
+          </li>
+          <li>
+            <a href="<{framework\core\Factory::U('admin/user/role')}>">
+              <span>用户角色</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a data="icon" class="icon icon-setting" href="javascript:;">
+          <span>全局设置</span>
+        </a>
+
+        <ul class="hide">
+          <li>
+            <a href="<{framework\core\Factory::U('admin/topic')}>">
+              <span>站点信息</span>
+            </a>
+          </li>
+          <li>
+            <a href="<{framework\core\Factory::U('admin/topic')}>">
+              <span>注册访问</span>
+            </a>
+          </li>
+          <li>
+            <a href="<{framework\core\Factory::U('admin/topic')}>">
+              <span>邮件设置</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a data="icon" class=" icon icon-job" href="javascript:;">
+          <span>工具</span>
+        </a>
+
+        <ul class="hide">
+          <li>
+            <a href="tool.html">
+              <span>系统维护</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="ps-scrollbar-x-rail" style="width: 235px; display: none; left: 0px; bottom: 3px;">
+    <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+  </div>
+  <div class="ps-scrollbar-y-rail" style="top: 0px; height: 607px; display: inherit; right: 0px;">
+    <div class="ps-scrollbar-y" style="top: 0px; height: 560px;"></div>
+  </div>
+</div>
+
+<{block name="content"}>
+<{/block}>
+<div class="aw-footer">
+  <p>
+    Copyright &copy; 2016-2099 - Powered By
+    <a target="blank" href="http://helloitbull.net/">有问必答 1.0</a>
+  </p>
+</div>
+
+</body>
+</html>
