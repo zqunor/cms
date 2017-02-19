@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-02-03 20:14:42
+/* Smarty version 3.1.29, created on 2017-02-19 14:18:52
   from "F:\Service\wamp64\www\cms\app\home\view\common\common.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5894743246f208_75435858',
+  'unifunc' => 'content_58a938cce18275_75915278',
   'file_dependency' => 
   array (
     '343ecf455d9a7833057722017e20dfc4a5ef0402' => 
     array (
       0 => 'F:\\Service\\wamp64\\www\\cms\\app\\home\\view\\common\\common.html',
-      1 => 1486124080,
+      1 => 1487485089,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5894743246f208_75435858 ($_smarty_tpl) {
+function content_58a938cce18275_75915278 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!DOCTYPE html>
@@ -31,15 +31,15 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
   <meta content="webkit" name="renderer">
   <title><?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, 'title', array (
-  0 => 'block_2507589474322a7cb3_72411978',
+  0 => 'block_394558a938ccd47089_02345695',
   1 => false,
   3 => 0,
   2 => 0,
 ));
 ?>
-有问必答</title>
-  <meta content="有问必答,知识社区,社交社区,问答社区" name="keywords">
-  <meta content="有问必答 社交化知识社区" name="description">
+but问答</title>
+  <meta content="but问答,知识社区,社交社区,问答社区" name="keywords">
+  <meta content="but问答 社交化知识社区" name="description">
 
 
   <base href="">
@@ -62,7 +62,7 @@ js/plug_module/style.css">
 
   <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "cssjs", array (
-  0 => 'block_13736589474322ca4a7_15246928',
+  0 => 'block_1585458a938ccd65863_45299948',
   1 => false,
   3 => 0,
   2 => 0,
@@ -133,7 +133,7 @@ js/respond.js"><?php echo '</script'; ?>
 
   <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, 'cssjs', array (
-  0 => 'block_14529589474322e7341_62445001',
+  0 => 'block_475158a938ccd85528_26533743',
   1 => false,
   3 => 0,
   2 => 0,
@@ -295,7 +295,7 @@ echo $_SESSION['user']['user_thumb'];?>
 <!-- 定义该地方将来被继承并重写 -->
 <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "content", array (
-  0 => 'block_103425894743245cdb9_31147126',
+  0 => 'block_1052458a938cce06fb9_40681679',
   1 => false,
   3 => 0,
   2 => 0,
@@ -308,7 +308,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "content", array 
     Copyright &copy; 2016-2099, All Rights Reserved
     <span class="hidden-xs">
     Powered By
-    <a target="blank" href="http://www.zqblogs.cn/">有问必答 1.0</a>
+    <a target="blank" href="http://www.zqblogs.cn/">but问答 1.0</a>
     </span>
 
   </div>
@@ -317,19 +317,19 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "content", array 
 </body>
 </html><?php }
 /* {block 'title'}  file:common/common.html */
-function block_2507589474322a7cb3_72411978($_smarty_tpl, $_blockParentStack) {
+function block_394558a938ccd47089_02345695($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'title'} */
 /* {block 'cssjs'}  file:common/common.html */
-function block_13736589474322ca4a7_15246928($_smarty_tpl, $_blockParentStack) {
+function block_1585458a938ccd65863_45299948($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'cssjs'} */
 /* {block 'cssjs'}  file:common/common.html */
-function block_14529589474322e7341_62445001($_smarty_tpl, $_blockParentStack) {
+function block_475158a938ccd85528_26533743($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'cssjs'} */
 /* {block 'content'}  file:common/common.html */
-function block_103425894743245cdb9_31147126($_smarty_tpl, $_blockParentStack) {
+function block_1052458a938cce06fb9_40681679($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'content'} */
 }
